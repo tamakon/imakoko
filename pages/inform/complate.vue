@@ -1,15 +1,33 @@
 <template>
-  <section class="container">
-    <div>
-      <app-logo/>
-      <p>このコードを教えてね</p>
-      <el-input v-model="input"></el-input>
-      <div class="links">
-        <el-button>やり直す</el-button>
-        <el-button>共有</el-button>
-      </div>
-    </div>
-  </section>
+  <el-container>
+    <el-header style="text-align: right; font-size: 12px; background: #DCDFE6">
+      <h3>Imakoko</h3>
+    </el-header>
+    <el-main>
+      <section class="container">
+        <div>
+          <el-row>
+            <el-col :span="24">
+              <p>このコードを教えてね</p>
+            </el-col>
+          </el-row>
+          <el-row :gutter="2">
+            <el-col :span="24">
+              <el-input v-model="input"></el-input>
+            </el-col>
+          </el-row>
+          <el-row :gutter="2" class="links">
+            <el-col :span="12">
+              <el-button>やり直す</el-button>
+            </el-col>
+            <el-col :span="12">
+              <el-button>共有</el-button>
+            </el-col>
+          </el-row>
+        </div>
+      </section>
+    </el-main>
+  </el-container>
 </template>
 
 <script>
@@ -34,24 +52,11 @@ export default {
   text-align: center;
 }
 
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
 .links {
-  padding-top: 15px;
+  padding-top: 30px;
+}
+
+button {
+  width: 100%;
 }
 </style>

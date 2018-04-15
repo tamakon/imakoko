@@ -2,20 +2,18 @@
   <section class="container">
     <div>
       <app-logo/>
-      <h1 class="title">
-        imakoko
-      </h1>
-      <h2 class="subtitle">
-        Nuxt.js project
-      </h2>
-      <div class="links">
-        <nuxt-link to="/inform">
-          <el-button>教える</el-button>
-        </nuxt-link>
-        <nuxt-link to="/find">
-          <el-button>探す</el-button>
-        </nuxt-link>
-      </div>
+      <el-row :gutter="2">
+        <el-col :span="12">
+          <nuxt-link to="/inform">
+            <el-button round>教える</el-button>
+          </nuxt-link>                
+        </el-col>
+        <el-col :span="12">
+          <nuxt-link to="/find">
+            <el-button round>探す</el-button>
+          </nuxt-link>
+        </el-col>
+      </el-row>
     </div>
   </section>
 </template>
@@ -31,32 +29,13 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  button {
+    width: 100%;
+  }
 </style>
