@@ -2,18 +2,17 @@
   <section class="container">
     <div>
       <app-logo/>
-      <h1 class="title">
-        imakoko
-      </h1>
-      <h2 class="subtitle">
-        Nuxt.js project
-      </h2>
+      <p>コードを入れてね</p>
+      <el-input v-model="input"></el-input>
       <div class="links">
-        <nuxt-link to="/inform">
-          <el-button>教える</el-button>
-        </nuxt-link>
-        <nuxt-link to="/find">
-          <el-button>探す</el-button>
+        <el-radio-group v-model="radio">
+          <el-radio-button label="1">Mapで探す</el-radio-button>
+          <el-radio-button label="2">カメラで探す</el-radio-button>
+        </el-radio-group>
+      </div>
+      <div class="links">
+        <nuxt-link to="./find/1234/camera">
+          <el-button>確定</el-button>
         </nuxt-link>
       </div>
     </div>
@@ -26,6 +25,12 @@ import AppLogo from '~/components/AppLogo.vue'
 export default {
   components: {
     AppLogo
+  },
+  data() {
+    return {
+        input: '',
+        radio: '1',
+    } 
   }
 }
 </script>

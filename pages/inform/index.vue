@@ -2,18 +2,15 @@
   <section class="container">
     <div>
       <app-logo/>
-      <h1 class="title">
-        imakoko
-      </h1>
-      <h2 class="subtitle">
-        Nuxt.js project
-      </h2>
+      <div>
+        <el-button type="text" @click="visible = true">ご利用に関して</el-button>
+        <el-dialog :visible.sync="visible" title="Hello world">
+          <p>座標データの使われ方であったりの説明を記載</p>
+        </el-dialog>
+      </div>
       <div class="links">
-        <nuxt-link to="/inform">
+        <nuxt-link to="/inform/complate">
           <el-button>教える</el-button>
-        </nuxt-link>
-        <nuxt-link to="/find">
-          <el-button>探す</el-button>
         </nuxt-link>
       </div>
     </div>
@@ -26,6 +23,9 @@ import AppLogo from '~/components/AppLogo.vue'
 export default {
   components: {
     AppLogo
+  },
+  data() {
+    return { visible: false } 
   }
 }
 </script>
