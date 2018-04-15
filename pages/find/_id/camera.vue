@@ -2,18 +2,9 @@
   <section class="container">
     <div>
       <app-logo/>
-      <h1 class="title">
-        imakoko
-      </h1>
-      <h2 class="subtitle">
-        Nuxt.js project
-      </h2>
       <div class="links">
-        <nuxt-link to="/inform">
-          <el-button>教える</el-button>
-        </nuxt-link>
-        <nuxt-link to="/find">
-          <el-button>探す</el-button>
+        <nuxt-link to="./map">
+          <el-button>Mapで探す</el-button>
         </nuxt-link>
       </div>
     </div>

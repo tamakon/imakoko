@@ -2,19 +2,11 @@
   <section class="container">
     <div>
       <app-logo/>
-      <h1 class="title">
-        imakoko
-      </h1>
-      <h2 class="subtitle">
-        Nuxt.js project
-      </h2>
+      <p>このコードを教えてね</p>
+      <el-input v-model="input"></el-input>
       <div class="links">
-        <nuxt-link to="/inform">
-          <el-button>教える</el-button>
-        </nuxt-link>
-        <nuxt-link to="/find">
-          <el-button>探す</el-button>
-        </nuxt-link>
+        <el-button>やり直す</el-button>
+        <el-button>共有</el-button>
       </div>
     </div>
   </section>
@@ -26,6 +18,9 @@ import AppLogo from '~/components/AppLogo.vue'
 export default {
   components: {
     AppLogo
+  },
+  data() {
+    return { input: '1234' } 
   }
 }
 </script>
