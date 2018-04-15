@@ -17,6 +17,10 @@
           href="https://github.com/nuxt/nuxt.js"
           target="_blank"
           class="button--grey">GitHub</a>
+          <el-button @click="visible = true">Button</el-button>
+          <el-dialog :visible.sync="visible" title="Hello world">
+            <p>Try Element</p>
+          </el-dialog>
       </div>
     </div>
   </section>
@@ -28,6 +32,9 @@ import AppLogo from '~/components/AppLogo.vue'
 export default {
   components: {
     AppLogo
+  },
+  data: function() {
+    return { visible: false }
   }
 }
 </script>
