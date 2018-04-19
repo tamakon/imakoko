@@ -1,0 +1,9 @@
+{
+  "firebase": {
+    "databaseURL": "https://imakoko-daf3c.firebaseio.com",
+    "databaseAuthVariableOverride": {
+      "uid": "function-service-worker"
+    }
+  }
+}
+

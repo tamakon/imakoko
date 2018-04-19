@@ -4,22 +4,17 @@ const express = require("express");
 const randomNumber = require("random-number");
 const zeroFill = require("zero-fill");
 
-admin.initializeApp({
-  credential: admin.credential.applicationDefault(),
-  databaseURL: "https://imakoko-daf3c.firebaseio.com",
-  databaseAuthVariableOverride: {
-    uid: "function-service-worker"
-  }
-});
-exports.locations = functions.https.onRequest(makeLocationApi(admin.database()));
+const app = admin.initializeApp(functions.config().firebase);
+const locationApi = makeLocationApi(app.database());
+exports.locations = functions.https.onRequest(locationApi);
 
 function makeLocationApi(database) {
-  const app = express();
-  app.get("/", (req, res) => res.send({"location": "TODO"}));
-  app.post("/", (req, res) => {
+  const api = express();
+  api.get("/", (req, res) => res.send({"location": "TODO"}));
+  api.post("/", (req, res) => {
     const onetimeAccessNumber = zeroFill(4, randomNumber({min: 0, max: 9999, integer: true}));
     database.ref("locations").child(onetimeAccessNumber).set(req.body.location);
     res.send({"passcode": onetimeAccessNumber});
   });
-  return app;
+  return api;
 }
