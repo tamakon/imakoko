@@ -32,7 +32,7 @@ function makeLocationApi(database) {
     }
   });
   api.post("/", [
-    check.body("location.latitude", "").custom((value) => /^\(?[+-]?(90(\.0+)?|[1-8]?\d(\.\d+)?)$/.test(value)),
+    check.body("location.latitude").custom((value) => /^\(?[+-]?(90(\.0+)?|[1-8]?\d(\.\d+)?)$/.test(value)),
     check.body("location.longitude").custom((value) => /^\s?[+-]?(180(\.0+)?|1[0-7]\d(\.\d+)?|\d{1,2}(\.\d+)?)\)?$/.test(value))
   ], (req, res) => {
     const errors = check.validationResult(req);
@@ -41,7 +41,6 @@ function makeLocationApi(database) {
       database.ref("locations").child(onetimeAccessNumber).set(req.body.location);
       res.json({"passcode": onetimeAccessNumber});
     } else {
-      console.log(errors.mapped());
       res.status(400).end();
     }
   });
