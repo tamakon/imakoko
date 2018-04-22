@@ -22,6 +22,13 @@ module.exports = {
   */
   build: {
     vendor: ['element-ui'],
+    postcss: {
+      plugins: {
+        'postcss-custom-properties': {
+          warnings: false
+        }
+      }
+    },
     /*
     ** Run ESLint on save
     */
@@ -40,6 +47,7 @@ module.exports = {
     '~plugins/element-ui'
   ],
   css: [
-    'element-ui/lib/theme-chalk/index.css'
+    'element-ui/lib/theme-chalk/index.css',
+    { src: 'bulma/bulma.sass', lang: 'sass' }
   ]
 }

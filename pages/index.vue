@@ -1,29 +1,34 @@
 <template>
-  <section class="container">
-    <div>
-      <app-logo/>
-      <el-row :gutter="2">
-        <el-col :span="12">
-          <nuxt-link to="/inform">
-            <el-button round>教える</el-button>
-          </nuxt-link>                
-        </el-col>
-        <el-col :span="12">
-          <nuxt-link to="/find">
-            <el-button round>探す</el-button>
-          </nuxt-link>
-        </el-col>
-      </el-row>
-    </div>
-  </section>
+  <div>
+    <app-header/>
+    <section class="section">
+      <div>
+        <app-logo/>
+        <div class="columns is-mobile">
+          <div class="column">
+            <nuxt-link to="/inform">
+              <el-button round>教える</el-button>
+            </nuxt-link>                
+          </div>
+          <div class="column">
+            <nuxt-link to="/find">
+              <el-button round>探す</el-button>
+            </nuxt-link>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
 import AppLogo from '~/components/AppLogo.vue'
+import AppHeader from '~/components/AppHeader.vue'
 
 export default {
   components: {
-    AppLogo
+    AppLogo,
+    AppHeader
   }
 }
 </script>

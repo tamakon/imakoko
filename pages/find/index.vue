@@ -1,34 +1,32 @@
 <template>
-  <el-container>
-    <el-header style="text-align: right; font-size: 12px; background: #DCDFE6">
-      <h3>Imakoko</h3>
-    </el-header>
-    <el-main>
-      <section class="container">
-        <div>
-          <p>コードを入れてね</p>
-          <el-input v-model="input"></el-input>
-          <div class="links">
-            <el-radio-group v-model="radio">
-              <el-radio-button label="1">Mapで探す</el-radio-button>
-              <el-radio-button label="2">カメラで探す</el-radio-button>
-            </el-radio-group>
-          </div>
-          <div class="links">
-            <nuxt-link to="./find/1234/camera">
-              <el-button type="success" round>確定</el-button>
-            </nuxt-link>
-          </div>
+  <div>
+    <app-header/>
+    <section class="section container">
+      <div class="">
+        <p>コードを入れてね</p>
+        <el-input v-model="input"></el-input>
+        <div class="links">
+          <el-radio-group v-model="radio">
+            <el-radio-button label="1">Mapで探す</el-radio-button>
+            <el-radio-button label="2">カメラで探す</el-radio-button>
+          </el-radio-group>
         </div>
-      </section>
-    </el-main>
-  </el-container>
+        <div class="links">
+          <nuxt-link to="./find/1234/camera">
+            <el-button type="success" round>確定</el-button>
+          </nuxt-link>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
+import AppHeader from '~/components/AppHeader.vue'
 
-export default {
+export default { 
   components: {
+    AppHeader
   },
   data() {
     return {
