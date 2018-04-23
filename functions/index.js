@@ -5,11 +5,12 @@ const check = require('express-validator/check');
 const randomNumber = require("random-number");
 const zeroFill = require("zero-fill");
 
+const api = express();
 const app = admin.initializeApp(functions.config().firebase);
-const locationApi = makeLocationApi(app.database());
-exports.locations = functions.https.onRequest(locationApi);
+api.use("/api/locations", makeLocationsApi(app.database()));
+exports.api = functions.https.onRequest(api);
 
-function makeLocationApi(database) {
+function makeLocationsApi(database) {
   const api = express();
   api.get("/", [
     check.query("passcode").custom((value) => /^[0-9]{4}$/.test(value))
