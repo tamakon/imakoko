@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <div>
-      <div stylle="height=300px">
+      <div>
         <google-map />
       </div>
       <div class="links">
