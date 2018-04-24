@@ -4,9 +4,10 @@ const express = require("express");
 const check = require('express-validator/check');
 const randomNumber = require("random-number");
 const zeroFill = require("zero-fill");
+const config = require("./config");
 
 const api = express();
-const app = admin.initializeApp(functions.config().firebase);
+const app = admin.initializeApp(config.firebase());
 api.use("/api/locations", makeLocationsApi(app.database()));
 exports.api = functions.https.onRequest(api);
 
