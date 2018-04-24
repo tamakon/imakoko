@@ -5,7 +5,7 @@
   "author": "tamakon",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nuxt --spa",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
@@ -17,6 +17,7 @@
   "dependencies": {
     "bulma": "^0.7.1",
     "element-ui": "^2.3.4",
+    "google-maps": "^3.3.0",
     "nuxt": "^1.0.0"
   },
   "devDependencies": {

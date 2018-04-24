@@ -1,7 +1,9 @@
 <template>
-  <section class="container">
+  <section class="section">
     <div>
-      <app-logo/>
+      <div stylle="height=300px">
+        <google-map />
+      </div>
       <div class="links">
         <nuxt-link to="./camera">
           <el-button>カメラで探す</el-button>
@@ -13,10 +15,21 @@
 
 <script>
 import AppLogo from '~/components/AppLogo.vue'
+import GoogleMap from '~/components/GoogleMap.vue'
 
 export default {
   components: {
-    AppLogo
+    AppLogo,
+    GoogleMap
+  },
+  mounted() {
+    window.navigator.geolocation.getCurrentPosition((position) => {
+      // TODO
+    }, () => {}
+    ,{
+			enableHighAccuracy: false,
+			timeout : 5000
+		});
   }
 }
 </script>
