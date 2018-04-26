@@ -13,3 +13,5 @@ dist
 # Jetbrains Products
 .idea
 *.iml
+
+.env

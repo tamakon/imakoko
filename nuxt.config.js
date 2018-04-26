@@ -13,6 +13,9 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  modules: [
+    '@nuxtjs/dotenv',
+  ],
   /*
   ** Customize the progress bar color
   */
@@ -21,7 +24,9 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    vendor: ['element-ui'],
+    vendor: [
+      'element-ui',
+    ],
     postcss: {
       plugins: {
         'postcss-custom-properties': {
@@ -44,7 +49,7 @@ module.exports = {
     }
   },
   plugins: [
-    '~plugins/element-ui'
+    '~plugins/element-ui',
   ],
   css: [
     'element-ui/lib/theme-chalk/index.css',

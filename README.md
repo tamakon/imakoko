@@ -5,6 +5,12 @@
 ## Build Setup
 
 ``` bash
+# changed env file
+$ cp .env.sample .env
+$ vi .env
+```
+
+``` bash
 # install dependencies
 $ npm install # Or yarn install
 
