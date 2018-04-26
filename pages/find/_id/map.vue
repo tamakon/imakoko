@@ -2,7 +2,9 @@
   <section class="section">
     <div>
       <div>
-        <google-map />
+        <google-map
+          :center="center"
+         />
       </div>
       <div class="links">
         <nuxt-link to="./camera">
@@ -18,14 +20,22 @@ import AppLogo from '~/components/AppLogo.vue'
 import GoogleMap from '~/components/GoogleMap.vue'
 
 export default {
+  data() {
+    return {
+      center: null
+    }
+  },
   components: {
     AppLogo,
     GoogleMap
   },
   mounted() {
     window.navigator.geolocation.getCurrentPosition((position) => {
-      // TODO
-    }, () => {}
+      console.log("success")
+      this.center = position.coords
+    }, () => {
+      console.log("error")
+    }
     ,{
 			enableHighAccuracy: false,
 			timeout : 5000
