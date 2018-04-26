@@ -15,21 +15,26 @@ export default {
     },
     data() {
         return {
-            map: null
         }
     },
     mounted() {
-        let _self = this
         GoogleMapsLoader.KEY = process.env.GOOGLE_MAPS_API
         GoogleMapsLoader.LANGUAGE = 'ja'
         GoogleMapsLoader.LIBRARIES = ['geometry', 'places']
         GoogleMapsLoader.load(function(google) {
-            _self.map = new google.maps.Map(document.getElementById('map'), {
+            window.google = google
+            window.map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 20,
                 center: new google.maps.LatLng(35.681167, 139.767052)
             })
         })
-    }
+    },
+    watch: {
+        center: (center) => {
+            const latlng = new window.google.maps.LatLng(center.latitude, center.longitude)
+            window.map.setCenter(latlng)
+        }
+    },
 }
 </script>
 
