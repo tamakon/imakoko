@@ -5,7 +5,8 @@
 ## Build Setup
 
 ``` bash
-# changed env file
+# change env file
+$ cd ./ # for project root directory
 $ cp .env.sample .env
 $ vi .env
 ```
@@ -20,4 +21,29 @@ $ npm run dev
 # build for production and launch server
 $ npm run build
 $ npm start
+```
+
+## firebase Setup
+
+```bash
+# install firebase
+$ npm run -g firebase-tools
+$ firebase login # use project google account
+$ firebase use --add
+```
+
+```bash
+# change env file
+$ cd ./functions
+$ cp .env.sample .env
+```
+
+### start for local app
+```bash
+$ npm run firebase-serve # local service
+```
+
+### deploy
+```
+$ npm run firebase-deploy
 ```
