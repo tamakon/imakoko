@@ -27,7 +27,7 @@ $ npm start
 
 ```bash
 # install firebase
-$ npm run -g firebase-tools
+$ npm install -g firebase-tools
 $ firebase login # use project google account
 $ firebase use --add
 ```
