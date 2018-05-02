@@ -42,7 +42,7 @@ export default {
         },
         marker: (marker) => {
             console.log(marker)
-            const latlng = new window.google.maps.LatLng(30.681167, 139.767052)
+            const latlng = new window.google.maps.LatLng(marker.latitude, marker.longitude)
             const gMarker = new window.google.maps.Marker({
                 map: window.map,
                 position: latlng
