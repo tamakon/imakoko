@@ -43,6 +43,7 @@ export default {
     window.navigator.geolocation.getCurrentPosition((position) => {
       console.log("success")
       this.center = position.coords
+      console.log(position.coords)
     }, () => {
       console.log("error")
     }
@@ -50,7 +51,8 @@ export default {
       enableHighAccuracy: false,
       timeout : 5000
     });
-    const path = `${process.env.API_ROOT}/api/locations/?passcode=4283`
+    const query = `passcode=${this.$route.params.id}`
+    const path = `${process.env.API_ROOT}/api/locations?${query}`
     axios.get(path).then(({ data }) => {
       this.marker = data.location
     });
