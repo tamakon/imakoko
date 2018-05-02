@@ -4,17 +4,20 @@
     <section class="section container">
       <div class="">
         <p>コードを入れてね</p>
+        <p>※コードは4桁の数字です</p>
         <el-input v-model="input"></el-input>
         <div class="links">
-          <el-radio-group v-model="radio">
+          <el-radio-group v-model="radio" disabled>
             <el-radio-button label="1">Mapで探す</el-radio-button>
             <el-radio-button label="2">カメラで探す</el-radio-button>
           </el-radio-group>
         </div>
         <div class="links">
-          <nuxt-link to="./find/1234/camera">
-            <el-button type="success" round>確定</el-button>
-          </nuxt-link>
+          <el-button
+            type="success"
+            :disabled="!isValidPassCode()"
+            @click="toNextPage"
+            round>確定</el-button>
         </div>
       </div>
     </section>
@@ -30,10 +33,21 @@ export default {
   },
   data() {
     return {
-        input: '',
+        input: '2345',
         radio: '1',
     } 
-  }
+  },
+  methods: {
+    toNextPage() {
+      const type = this.radio === '1' ? 'map' : 'camera'
+      const path = `/find/${this.input}/${type}`
+      this.$router.push({ path })
+    },
+    isValidPassCode() {
+      const exp = "^[0-9]{4}$";
+      return String(this.input).match(exp)
+    }
+  },
 }
 </script>
 
