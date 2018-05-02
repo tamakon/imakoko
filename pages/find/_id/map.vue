@@ -2,9 +2,10 @@
   <section class="section">
     <div>
       <div>
-        <google-map
-          :center="center"
-         />
+          <google-map
+            :center="center"
+            :marker="marker"
+          />
       </div>
       <div class="links">
         <nuxt-link to="./camera">
@@ -18,16 +19,18 @@
 <script>
 import AppLogo from '~/components/AppLogo.vue'
 import GoogleMap from '~/components/GoogleMap.vue'
+import axios from 'axios'
 
 export default {
   data() {
     return {
-      center: null
+      center: null,
+      marker: null,
     }
   },
   components: {
     AppLogo,
-    GoogleMap
+    GoogleMap,
   },
   mounted() {
     window.navigator.geolocation.getCurrentPosition((position) => {
@@ -37,9 +40,13 @@ export default {
       console.log("error")
     }
     ,{
-			enableHighAccuracy: false,
-			timeout : 5000
-		});
+      enableHighAccuracy: false,
+      timeout : 5000
+    });
+    const path = `${process.env.API_ROOT}/api/locations/?passcode=4283`
+    axios.get(path).then(({ data }) => {
+      this.marker = data.location
+    });
   }
 }
 </script>

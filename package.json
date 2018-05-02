@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@nuxtjs/dotenv": "^1.1.1",
+    "axios": "^0.18.0",
     "bulma": "^0.7.1",
     "element-ui": "^2.3.4",
     "google-maps": "^3.3.0",

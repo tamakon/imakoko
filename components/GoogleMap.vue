@@ -11,6 +11,10 @@ export default {
         center: {
             latitude: Number,
             longitude: Number
+        },
+        marker: {
+            latitude: Number,
+            longitude: Number
         }
     },
     data() {
@@ -23,9 +27,11 @@ export default {
         GoogleMapsLoader.LIBRARIES = ['geometry', 'places']
         GoogleMapsLoader.load(function(google) {
             window.google = google
+            // default location at Tokyo
+            const center = new google.maps.LatLng(30.681167, 139.767052)
             window.map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 20,
-                center: new google.maps.LatLng(35.681167, 139.767052)
+                center
             })
         })
     },
@@ -33,6 +39,14 @@ export default {
         center: (center) => {
             const latlng = new window.google.maps.LatLng(center.latitude, center.longitude)
             window.map.setCenter(latlng)
+        },
+        marker: (marker) => {
+            console.log(marker)
+            const latlng = new window.google.maps.LatLng(30.681167, 139.767052)
+            const gMarker = new window.google.maps.Marker({
+                map: window.map,
+                position: latlng
+            });
         }
     },
 }
