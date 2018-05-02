@@ -4,7 +4,7 @@
     <section class="section container">
       <div class="">
         <p>コードを入れてね</p>
-        <p>※コードは4桁の数字です</p>
+        <p class="has-text-grey">※コードは4桁の数字です</p>
         <el-input v-model="input"></el-input>
         <div class="links">
           <el-radio-group v-model="radio" disabled>

@@ -9,7 +9,9 @@
       </div>
       <div class="links">
         <nuxt-link to="./camera">
-          <el-button>カメラで探す</el-button>
+          <el-button
+            @click="toCamera"
+            disabled>カメラで探す</el-button>
         </nuxt-link>
       </div>
     </div>
@@ -26,6 +28,11 @@ export default {
     return {
       center: null,
       marker: null,
+    }
+  },
+  methods: {
+    toCamera() {
+      this.$router.push({ path: '../camera' })
     }
   },
   components: {
