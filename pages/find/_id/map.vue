@@ -2,13 +2,16 @@
   <section class="section">
     <div>
       <div>
-        <google-map
-          :center="center"
-         />
+          <google-map
+            :center="center"
+            :marker="marker"
+          />
       </div>
       <div class="links">
         <nuxt-link to="./camera">
-          <el-button>カメラで探す</el-button>
+          <el-button
+            @click="toCamera"
+            disabled>カメラで探す</el-button>
         </nuxt-link>
       </div>
     </div>
@@ -18,28 +21,41 @@
 <script>
 import AppLogo from '~/components/AppLogo.vue'
 import GoogleMap from '~/components/GoogleMap.vue'
+import axios from 'axios'
 
 export default {
   data() {
     return {
-      center: null
+      center: null,
+      marker: null,
+    }
+  },
+  methods: {
+    toCamera() {
+      this.$router.push({ path: '../camera' })
     }
   },
   components: {
     AppLogo,
-    GoogleMap
+    GoogleMap,
   },
   mounted() {
     window.navigator.geolocation.getCurrentPosition((position) => {
       console.log("success")
       this.center = position.coords
+      console.log(position.coords)
     }, () => {
       console.log("error")
     }
     ,{
-			enableHighAccuracy: false,
-			timeout : 5000
-		});
+      enableHighAccuracy: false,
+      timeout : 5000
+    });
+    const query = `passcode=${this.$route.params.id}`
+    const path = `${process.env.API_ROOT}/api/locations?${query}`
+    axios.get(path).then(({ data }) => {
+      this.marker = data.location
+    });
   }
 }
 </script>

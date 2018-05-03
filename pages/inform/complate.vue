@@ -15,7 +15,7 @@
         </el-row>
         <el-row :gutter="2" class="links">
           <el-col :span="12">
-            <el-button>やり直す</el-button>
+            <el-button disabled>やり直す</el-button>
           </el-col>
           <el-col :span="12">
             <el-button>共有</el-button>
@@ -36,7 +36,8 @@ export default {
     AppHeader
   },
   data() {
-    return { input: '1234' } 
+    const value = this.$route.query.passcode || ''
+    return { input: value } 
   }
 }
 </script>

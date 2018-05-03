@@ -12,9 +12,10 @@
         </el-row>
         <el-row :gutter="2">
           <el-col :span="24" class="links">
-            <nuxt-link to="/inform/complate">
-              <el-button type="success" round>教える</el-button>
-            </nuxt-link>
+            <el-button
+              type="success"
+              @click="onInform"
+              round>教える</el-button>
           </el-col>
         </el-row>
         <el-dialog width="80%" :visible.sync="visible" title="ご利用に関して">
@@ -28,6 +29,7 @@
 <script>
 import AppLogo from '~/components/AppLogo.vue'
 import AppHeader from '~/components/AppHeader.vue'
+import axios from 'axios'
 
 export default {
   components: {
@@ -36,7 +38,32 @@ export default {
   },
   data() {
     return { visible: false } 
-  }
+  },
+  methods: {
+    onInform() {
+      const option = {
+        enableHighAccuracy: true,
+        timeout : 5000,
+        maximumAge: 0 
+      }
+      window.navigator.geolocation
+        .getCurrentPosition(this.postApi, console.log, option)
+    },
+    postApi(position) {
+      const path = `${process.env.API_ROOT}/api/locations`
+      const params = {
+        location: {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        }
+      }
+      axios.post(path, params).then(({ data }) => {
+        const query = `passcode=${data.passcode}`
+        const path = `/inform/complate?${query}`
+        this.$router.push({ path })
+      });
+    }
+  },
 }
 </script>
 
