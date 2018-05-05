@@ -4,6 +4,7 @@ const express = require("express");
 const check = require('express-validator/check');
 const randomNumber = require("random-number");
 const zeroFill = require("zero-fill");
+const moment = require("moment");
 const config = require("./config");
 
 const api = express();
@@ -40,8 +41,16 @@ function makeLocationsApi(database) {
     const errors = check.validationResult(req);
     if (errors.isEmpty()) {
       const onetimeAccessNumber = zeroFill(4, randomNumber({min: 0, max: 9999, integer: true}));
-      database.ref("locations").child(onetimeAccessNumber).set(req.body.location);
-      res.json({"passcode": onetimeAccessNumber});
+      database.ref("locations").child(onetimeAccessNumber).set({
+        "latitude": req.body.location.latitude,
+        "longitude": req.body.location.longitude,
+        "create_at": moment().format("YYYYMMDDHHmmss")
+      }).then(function () {
+        res.json({"passcode": onetimeAccessNumber});
+      }).catch(function (error) {
+        console.error(error);
+        res.status(500).end();
+      });
     } else {
       res.status(400).end();
     }
