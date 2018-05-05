@@ -16,6 +16,7 @@
             </nuxt-link>
           </div>
         </div>
+        <release-note />
       </div>
     </section>
   </div>
@@ -24,11 +25,13 @@
 <script>
 import AppLogo from '~/components/AppLogo.vue'
 import AppHeader from '~/components/AppHeader.vue'
+import ReleaseNote from '~/components/ReleaseNote.vue'
 
 export default {
   components: {
     AppLogo,
-    AppHeader
+    AppHeader,
+    ReleaseNote,
   }
 }
 </script>
