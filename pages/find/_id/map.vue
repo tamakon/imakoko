@@ -1,13 +1,11 @@
 <template>
-  <section class="section">
     <div>
-      <div>
-          <google-map
-            :center="center"
-            :marker="marker"
-          />
-      </div>
-      <div class="links">
+      <app-header/>
+      <google-map
+        :center="center"
+        :marker="marker"
+      />
+      <div class="links" v-show="false">
         <nuxt-link to="./camera">
           <el-button
             @click="toCamera"
@@ -15,15 +13,20 @@
         </nuxt-link>
       </div>
     </div>
-  </section>
 </template>
 
 <script>
 import AppLogo from '~/components/AppLogo.vue'
+import AppHeader from '~/components/AppHeader.vue'
 import GoogleMap from '~/components/GoogleMap.vue'
 import axios from 'axios'
 
 export default {
+  components: {
+    AppLogo,
+    GoogleMap,
+    AppHeader,
+  },
   data() {
     return {
       center: null,
@@ -34,10 +37,6 @@ export default {
     toCamera() {
       this.$router.push({ path: '../camera' })
     }
-  },
-  components: {
-    AppLogo,
-    GoogleMap,
   },
   mounted() {
     window.navigator.geolocation.getCurrentPosition((position) => {
