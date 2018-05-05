@@ -5,7 +5,8 @@
       <div>
         <el-row>
           <el-col :span="24">
-            <p>このコードを教えてね</p>
+            <p>下のコードをコピー</p>
+            <p>またはLineで送るから教えてね</p>
           </el-col>
         </el-row>
         <el-row :gutter="2">
@@ -14,12 +15,9 @@
           </el-col>
         </el-row>
         <el-row :gutter="2" class="links">
-          <el-col :span="12">
-            <el-button disabled>やり直す</el-button>
-          </el-col>
-          <el-col :span="12">
-            <el-button>共有</el-button>
-          </el-col>
+          <line-share
+            :passCode="$route.query.passcode"
+          />
         </el-row>
       </div>
     </section>
@@ -29,11 +27,13 @@
 <script>
 import AppHeader from '~/components/AppHeader.vue'
 import AppLogo from '~/components/AppLogo.vue'
+import LineShare from '~/components/LineShare.vue'
 
 export default {
   components: {
     AppLogo,
-    AppHeader
+    AppHeader,
+    LineShare,
   },
   data() {
     const value = this.$route.query.passcode || ''
