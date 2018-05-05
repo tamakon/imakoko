@@ -12,10 +12,11 @@
         </el-row>
         <el-row :gutter="2">
           <el-col :span="24" class="links">
-            <el-button
-              type="success"
+            <button
+              class="button is-success is-rounded"
+              :class="loadingStyle()"
               @click="onInform"
-              round>教える</el-button>
+            >教える</button>
           </el-col>
         </el-row>
         <el-dialog width="80%" :visible.sync="visible" title="ご利用に関して">
@@ -37,17 +38,21 @@ export default {
     AppHeader
   },
   data() {
-    return { visible: false } 
+    return {
+      visible: false,
+      isEventing: false,
+    }
   },
   methods: {
     onInform() {
+      this.isEventing = true
       const option = {
         enableHighAccuracy: true,
         timeout : 5000,
         maximumAge: 0 
       }
       window.navigator.geolocation
-        .getCurrentPosition(this.postApi, console.log, option)
+        .getCurrentPosition(this.postApi, this.complate, option)
     },
     postApi(position) {
       const path = `${process.env.API_ROOT}/api/locations`
@@ -61,8 +66,18 @@ export default {
         const query = `passcode=${data.passcode}`
         const path = `/inform/complate?${query}`
         this.$router.push({ path })
-      });
-    }
+        this.complate('do complate page')
+      }).catch(this.complate);
+    },
+    complate(info) {
+      console.log(info)
+      this.isEventing = false
+    },
+    loadingStyle() {
+      return {
+        'is-loading': this.isEventing,
+      }
+    },
   },
 }
 </script>
