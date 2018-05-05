@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "postdeploy":"node tools/postdeploy.js",
     "public": "dist",
     "rewrites": [ {
       "source": "/api/**", "function": "api"
